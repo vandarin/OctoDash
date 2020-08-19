@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
 
 import { ConfigService } from "../config/config.service";
-import { DisplayLayerProgressAPI, LayerProgressService } from "../plugin-service/layer-progress.service";
 import { PrinterService, PrinterStatusAPI, PrinterValue } from "../printer.service";
 
 @Component({
@@ -20,11 +19,7 @@ export class PrinterStatusComponent implements OnInit, OnDestroy {
   public heatbedTarget: number;
   public fanTarget: number;
 
-  public constructor(
-    private printerService: PrinterService,
-    private displayLayerProgressService: LayerProgressService,
-    private configService: ConfigService
-  ) {
+  public constructor(private printerService: PrinterService, private configService: ConfigService) {
     this.printerStatus = {
       nozzle: {
         current: 0,
@@ -51,11 +46,7 @@ export class PrinterStatusComponent implements OnInit, OnDestroy {
       })
     );
 
-    this.subscriptions.add(
-      this.displayLayerProgressService.getObservable().subscribe((layerProgress: DisplayLayerProgressAPI): void => {
-        this.printerStatus.fan = layerProgress.fanSpeed;
-      })
-    );
+    this.printerStatus.fan = "--";
   }
 
   public ngOnDestroy(): void {
