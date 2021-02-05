@@ -40,7 +40,7 @@ export class BottomBarComponent implements OnDestroy {
           this.enclosureTemperature = {
             temperature: printerStatus.chamber.current,
             humidity: 0,
-            unit: '°C'
+            unit: '°C',
           };
         }
       }),

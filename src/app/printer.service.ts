@@ -45,7 +45,7 @@ export class PrinterService {
                 chamber: {
                   current: data.temperature.chamber ? Math.round(data.temperature.chamber.actual) : 0,
                   set: data.temperature.chamber ? Math.round(data.temperature.chamber.target) : 0,
-                }
+                },
               };
               observer.next(printerStatus);
             },
@@ -72,7 +72,7 @@ export class PrinterService {
                   chamber: {
                     current: 0,
                     set: 0,
-                  }
+                  },
                 };
                 observer.next(printerStatus);
               } else {
