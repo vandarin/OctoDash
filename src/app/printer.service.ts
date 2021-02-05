@@ -42,6 +42,10 @@ export class PrinterService {
                   current: data.temperature.bed ? Math.round(data.temperature.bed.actual) : 0,
                   set: data.temperature.bed ? Math.round(data.temperature.bed.target) : 0,
                 },
+                chamber: {
+                  current: data.temperature.chamber ? Math.round(data.temperature.chamber.actual) : 0,
+                  set: data.temperature.chamber ? Math.round(data.temperature.chamber.target) : 0,
+                }
               };
               observer.next(printerStatus);
             },
@@ -65,6 +69,10 @@ export class PrinterService {
                     current: 0,
                     set: 0,
                   },
+                  chamber: {
+                    current: 0,
+                    set: 0,
+                  }
                 };
                 observer.next(printerStatus);
               } else {
@@ -75,6 +83,10 @@ export class PrinterService {
                     set: 0,
                   },
                   heatbed: {
+                    current: 0,
+                    set: 0,
+                  },
+                  chamber: {
                     current: 0,
                     set: 0,
                   },
@@ -259,6 +271,7 @@ export interface PrinterStatusAPI {
   status: string;
   nozzle: PrinterValue;
   heatbed: PrinterValue;
+  chamber: PrinterValue;
 }
 
 export interface PrinterValue {

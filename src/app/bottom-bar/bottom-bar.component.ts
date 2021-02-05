@@ -36,6 +36,13 @@ export class BottomBarComponent implements OnDestroy {
     this.subscriptions.add(
       this.printerService.getObservable().subscribe((printerStatus: PrinterStatusAPI): void => {
         this.printer.status = printerStatus.status;
+        if (printerStatus.chamber.current > 0) {
+          this.enclosureTemperature = {
+            temperature: printerStatus.chamber.current,
+            humidity: 0,
+            unit: '°C'
+          };
+        }
       }),
     );
   }
